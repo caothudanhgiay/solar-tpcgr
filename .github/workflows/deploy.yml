@@ -1,0 +1,41 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main # Chạy luồng này mỗi khi có code mới được push lên nhánh main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kết nối SSH tới Server và thực thi lệnh Deploy
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          script: |
+            echo "Đang triển khai phiên bản mới..."
+            
+            # Di chuyển tới thư mục chứa code trên server (Bạn cần thay đổi đường dẫn này cho đúng)
+            # Ví dụ: cd /var/www/solar-tpcgr
+            cd /root/solar-tpcgr
+            
+            # Kéo code mới nhất từ Github về Server
+            git pull origin main
+            
+            # Di chuyển vào thư mục ứng dụng Next.js
+            cd solartpc
+            
+            # Build hình ảnh Docker mới
+            docker build -t solartpc-web:latest .
+            
+            # Xoá bỏ container cũ đang chạy
+            docker stop solartpc-container || true
+            docker rm solartpc-container || true
+            
+            # Khởi chạy container mới với code mới nhất
+            docker run -d -p 3000:3000 --name solartpc-container --restart unless-stopped solartpc-web:latest
+            
+            echo "Triển khai thành công rực rỡ! 🚀"
