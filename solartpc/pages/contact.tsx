@@ -1,7 +1,20 @@
+import { useEffect, useRef } from "react";
+import { useRouter } from "next/router";
 import { User, Phone, Mail, MapPin, MessageSquare } from "lucide-react";
 import Head from "next/head";
 
 export default function ContactPage() {
+  const nameInputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (router.asPath.includes("#ho-va-ten") && nameInputRef.current) {
+      setTimeout(() => {
+        nameInputRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        nameInputRef.current?.focus();
+      }, 100);
+    }
+  }, [router.asPath]);
   return (
     <>
       <Head>
@@ -105,6 +118,8 @@ export default function ContactPage() {
                     <User className="w-5 h-5" />
                   </div>
                   <input
+                    ref={nameInputRef}
+                    id="ho-va-ten"
                     type="text"
                     placeholder="Họ và tên (*)"
                     className="w-full pl-8 pr-4 py-3 bg-transparent border-0 border-b border-gray-600 outline-none focus:border-orange-500 focus:ring-0 text-white placeholder-gray-500 transition-colors"

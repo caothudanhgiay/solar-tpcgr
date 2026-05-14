@@ -19,6 +19,19 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const handleQuoteClick = (e: React.MouseEvent) => {
+    if (window.location.pathname === "/contact") {
+      e.preventDefault();
+      const input = document.getElementById("ho-va-ten") as HTMLInputElement | null;
+      if (input) {
+        const offset = 120;
+        const top = input.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: "smooth" });
+        setTimeout(() => input.focus(), 300);
+      }
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -67,7 +80,8 @@ export default function Header() {
         {/* Action Button */}
         <div className="hidden lg:flex items-center gap-4">
           <Link
-            href="/contact"
+            href="/contact#ho-va-ten"
+            onClick={handleQuoteClick}
             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-0.5"
           >
             Nhận Báo Giá
@@ -104,8 +118,8 @@ export default function Header() {
             ))}
             <div className="pt-4 pb-2 px-2">
               <Link
-                href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
+                href="/contact#ho-va-ten"
+                onClick={(e) => { handleQuoteClick(e); setMobileMenuOpen(false); }}
                 className="block w-full text-center bg-orange-500 hover:bg-orange-600 text-white px-5 py-3.5 rounded-xl text-base font-bold transition-colors shadow-lg shadow-orange-500/30"
               >
                 Nhận Báo Giá
