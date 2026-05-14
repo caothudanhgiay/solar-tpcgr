@@ -44,7 +44,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="text-lg text-gray-300 max-w-xl leading-relaxed">
-              TPC Renewable Energy mang đến giải pháp năng lượng sạch toàn diện, giúp bạn tiết kiệm chi phí, tối ưu hóa lợi nhuận và chung tay bảo vệ môi trường.
+              TPC Solar mang đến giải pháp năng lượng sạch toàn diện, giúp bạn tiết kiệm chi phí, tối ưu hóa lợi nhuận và chung tay bảo vệ môi trường.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">

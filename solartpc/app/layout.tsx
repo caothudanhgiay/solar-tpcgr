@@ -7,7 +7,7 @@ import Footer from "@/components/layout/Footer";
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
 
 export const metadata: Metadata = {
-  title: "TPC Renewable Energy - Giải pháp Năng lượng mặt trời",
+  title: "TPC Solar - Giải pháp Năng lượng mặt trời",
   description: "Cung cấp giải pháp năng lượng mặt trời toàn diện, thông minh và tiết kiệm cho hộ gia đình và doanh nghiệp.",
   icons: {
     icon: '/images/logo_tpc.png',

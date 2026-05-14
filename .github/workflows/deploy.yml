@@ -35,7 +35,7 @@ jobs:
             docker stop solartpc-container || true
             docker rm solartpc-container || true
             
-            # Khởi chạy container mới với code mới nhất
-            docker run -d -p 3000:3000 --name solartpc-container --restart unless-stopped solartpc-web:latest
+            # Khởi chạy container mới với code mới nhất (chỉ listen ở localhost để bảo mật)
+            docker run -d -p 127.0.0.1:3000:3000 --name solartpc-container --restart unless-stopped solartpc-web:latest
             
             echo "Triển khai thành công rực rỡ! 🚀"

@@ -79,7 +79,7 @@ export default function ContactPage() {
           {/* Map Column */}
           <div className="h-[400px] rounded-2xl overflow-hidden border border-white/10 shadow-lg relative">
              <iframe 
-              src="https://maps.google.com/maps?q=Trường%20Tiểu%20học%20Tam%20Phước%204,%20Nguyễn%20Khắc%20Hiếu,%20Tam%20Phước,%20Đồng%20Nai&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              src="https://maps.google.com/maps?q=%E1%BA%A4p+Long+%C4%90%E1%BB%A9c+1,+P+Tam+Ph%C6%B0%E1%BB%9Bc+TP+Bi%C3%AAn+Ho%C3%A0+,+T%E1%BB%89nh+%C4%90%E1%BB%93ng+Nai&t=&z=16&ie=UTF8&iwloc=&output=embed"
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 

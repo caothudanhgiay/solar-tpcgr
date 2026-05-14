@@ -25,18 +25,18 @@ export default function Footer() {
             </Link>
             <div className="flex space-x-4 pt-2">
               <a href="#" aria-label="Facebook" className="relative w-10 h-10 rounded-xl overflow-hidden hover:scale-110 transition-transform shadow-md block">
-                <Image 
-                  src="/images/fb-icon.png" 
-                  alt="Facebook" 
+                <Image
+                  src="/images/fb-icon.png"
+                  alt="Facebook"
                   fill
                   className="object-cover"
                   sizes="40px"
                 />
               </a>
               <a href="#" aria-label="Zalo" className="relative w-10 h-10 rounded-xl overflow-hidden hover:scale-110 transition-transform shadow-md block">
-                <Image 
-                  src="/images/zalo-icon.png" 
-                  alt="Zalo" 
+                <Image
+                  src="/images/zalo-icon.png"
+                  alt="Zalo"
                   fill
                   className="object-cover"
                   sizes="40px"
@@ -60,15 +60,15 @@ export default function Footer() {
               <ul className="space-y-3 text-sm text-gray-400">
                 <li className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-orange-500 mt-0.5 shrink-0" />
-                  <span className="leading-relaxed">Trường Tiểu học Tam Phước 4, Nguyễn Khắc Hiếu, Tam Phước, Đồng Nai, Việt Nam</span>
+                  <span className="leading-relaxed">Khu phố Long đức 1, phườngTam phước, thành phố Đồng Nai</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="h-5 w-5 text-orange-500 shrink-0" />
-                  <span><strong className="text-white">0358 323 04</strong></span>
+                  <span><strong className="text-white">0797791512</strong></span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-orange-500 shrink-0" />
-                  <span>tpcsolar@gmail.vn</span>
+                  <span>solar.tpcgr@gmail.com</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Globe className="h-5 w-5 text-orange-500 shrink-0" />
@@ -108,7 +108,7 @@ export default function Footer() {
             </h3>
             <div className="rounded-lg h-[200px] w-full overflow-hidden border border-white/10 shadow-sm">
               <iframe
-                src="https://maps.google.com/maps?q=Trường%20Tiểu%20học%20Tam%20Phước%204,%20Nguyễn%20Khắc%20Hiếu,%20Tam%20Phước,%20Đồng%20Nai&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=%E1%BA%A4p+Long+%C4%90%E1%BB%A9c+1,+P+Tam+Ph%C6%B0%E1%BB%9Bc+TP+Bi%C3%AAn+Ho%C3%A0+,+T%E1%BB%89nh+%C4%90%E1%BB%93ng+Nai&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
