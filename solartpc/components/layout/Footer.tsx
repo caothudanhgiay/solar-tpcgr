@@ -16,6 +16,7 @@ export default function Footer() {
                   src="/images/logo_tpc.png"
                   alt="TPC Logo"
                   fill
+                  sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
                   className="object-contain p-1 object-left"
                 />
               </div>
@@ -53,7 +54,7 @@ export default function Footer() {
 
             <div className="space-y-4">
               <h4 className="text-gray-300 font-bold text-sm uppercase">
-                CÔNG TY TNHH ĐT&TM NĂNG LƯỢNG TPC
+                CÔNG TY TNHH DỊCH VỤ NĂNG LƯỢNG MẶT TRỜI TPC
               </h4>
               <p className="text-sm text-gray-500 font-medium">MST: [Mã số thuế của bạn]</p>
 

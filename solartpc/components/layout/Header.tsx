@@ -39,11 +39,12 @@ export default function Header() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center group shrink-0">
-          <div className="relative w-48 md:w-64 lg:w-72 h-14 md:h-20 transition-transform group-hover:scale-105">
+          <div className="relative w-56 md:w-64 lg:w-72 h-16 md:h-20 transition-transform group-hover:scale-105">
             <Image 
               src="/images/logo_tpc.png" 
               alt="TPC Logo" 
               fill
+              sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
               className="object-contain object-left"
               priority
             />
@@ -51,12 +52,12 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-10">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-semibold transition-colors hover:text-orange-500 text-white/90 hover:text-white"
+              className="text-base font-semibold transition-colors hover:text-orange-500 text-white/90 hover:text-white"
             >
               {item.name}
             </Link>

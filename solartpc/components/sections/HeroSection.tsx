@@ -39,9 +39,9 @@ export default function HeroSection() {
               <span>Tiên phong năng lượng xanh</span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              Giải pháp <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400">Điện Mặt Trời</span><br /> Cho Tương Lai
-            </h1>
+            <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+              Giải pháp <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-yellow-400 whitespace-nowrap">Điện Mặt Trời</span><br /> Cho Tương Lai
+            </h3>
 
             <p className="text-lg text-gray-300 max-w-xl leading-relaxed">
               TPC Solar mang đến giải pháp năng lượng sạch toàn diện, giúp bạn tiết kiệm chi phí, tối ưu hóa lợi nhuận và chung tay bảo vệ môi trường.
