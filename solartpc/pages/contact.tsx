@@ -49,7 +49,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-bold text-white mb-1">Văn phòng Đồng Nai</h3>
                       <p className="text-gray-300 leading-relaxed text-sm">
-                        Trường Tiểu học Tam Phước 4, Nguyễn Khắc Hiếu, Tam Phước, Đồng Nai, Việt Nam
+                        Nguyễn Khắc Hiếu, Tam Phước, Đồng Nai, Việt Nam
                       </p>
                     </div>
                   </div>
@@ -60,7 +60,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-bold text-white mb-1">Hotline</h3>
-                      <p className="text-orange-400 font-bold text-lg">0358 323 04</p>
+                      <p className="text-orange-400 font-bold text-lg">0797 791 512</p>
                     </div>
                   </div>
 
@@ -70,7 +70,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-bold text-white mb-1">Email</h3>
-                      <p className="text-gray-300 text-sm">tpcsolar@gmail.vn</p>
+                      <p className="text-gray-300 text-sm">solar.tpcgr@gmail.com</p>
                     </div>
                   </div>
                 </div>
