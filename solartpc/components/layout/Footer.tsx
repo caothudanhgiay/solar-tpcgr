@@ -56,7 +56,7 @@ export default function Footer() {
               <h4 className="text-gray-300 font-bold text-sm uppercase">
                 CÔNG TY TNHH DỊCH VỤ NĂNG LƯỢNG MẶT TRỜI TPC
               </h4>
-              <p className="text-sm text-gray-500 font-medium">MST: [Mã số thuế của bạn]</p>
+              {/* <p className="text-sm text-gray-500 font-medium">MST: [Mã số thuế của bạn]</p> */}
 
               <ul className="space-y-3 text-sm text-gray-400">
                 <li className="flex items-start gap-3">
