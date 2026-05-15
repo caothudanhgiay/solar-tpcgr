@@ -10,7 +10,7 @@ export default function NewsPage() {
       <main className="relative min-h-screen pt-32 pb-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 to-slate-900/70 z-10" />
-          <div 
+          <div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: "url('https://images.unsplash.com/photo-1504384308090-c564bd248273?q=80&w=2070&auto=format&fit=crop')" }}
           />

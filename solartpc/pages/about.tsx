@@ -1,4 +1,6 @@
+"use client";
 import Head from "next/head";
+import { motion } from "framer-motion";
 import {
   Leaf,
   ShieldCheck,
@@ -14,42 +16,57 @@ import {
   Lightbulb,
   Sparkles,
   CheckCircle2,
-  Phone,
-  Mail,
-  PhoneCall,
-  MonitorSmartphone,
   Settings,
 } from "lucide-react";
 
+// ── Animation variants ──────────────────────────────────────────
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, delay: i * 0.1, ease: "easeOut" },
+  }),
+};
+
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
+};
+
+const slideLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" },
+  }),
+};
+
+const slideRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.6, delay: i * 0.15, ease: "easeOut" },
+  }),
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.85 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, delay: i * 0.1, ease: "easeOut" },
+  }),
+};
+
+// ── Data ────────────────────────────────────────────────────────
 const highlights = [
-  {
-    icon: Leaf,
-    title: "Sạch hơn",
-    sub: "Giảm phát thải",
-    color: "text-green-400",
-    bg: "bg-green-500/20",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Tiết kiệm hơn",
-    sub: "Giảm chi phí điện",
-    color: "text-blue-400",
-    bg: "bg-blue-500/20",
-  },
-  {
-    icon: TrendingUp,
-    title: "Hiệu quả hơn",
-    sub: "Tối ưu hiệu suất",
-    color: "text-orange-400",
-    bg: "bg-orange-500/20",
-  },
-  {
-    icon: Globe,
-    title: "Bền vững hơn",
-    sub: "Phát triển dài lâu",
-    color: "text-teal-400",
-    bg: "bg-teal-500/20",
-  },
+  { icon: Leaf, title: "Sạch hơn", sub: "Giảm phát thải", color: "text-green-400", bg: "bg-green-500/20" },
+  { icon: ShieldCheck, title: "Tiết kiệm hơn", sub: "Giảm chi phí điện", color: "text-blue-400", bg: "bg-blue-500/20" },
+  { icon: TrendingUp, title: "Hiệu quả hơn", sub: "Tối ưu hiệu suất", color: "text-orange-400", bg: "bg-orange-500/20" },
+  { icon: Globe, title: "Bền vững hơn", sub: "Phát triển dài lâu", color: "text-teal-400", bg: "bg-teal-500/20" },
 ];
 
 const aboutPoints = [
@@ -84,13 +101,7 @@ const benefits = [
   "Hỗ trợ nhanh chóng và tận tâm",
 ];
 
-const contacts = [
-  { icon: Phone, label: "LIÊN HỆ VỚI CHÚNG TÔI", value: "", isTitle: true },
-  { icon: Mail, label: "Email", value: "solar.tpcgr@gmail.com" },
-  { icon: PhoneCall, label: "Hotline", value: "079.779.1612" },
-  { icon: MonitorSmartphone, label: "Website", value: "www.tpcsolar.vn" },
-];
-
+// ── Component ───────────────────────────────────────────────────
 export default function AboutPage() {
   return (
     <>
@@ -102,49 +113,142 @@ export default function AboutPage() {
         />
       </Head>
 
-      <main className="min-h-screen bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 pt-24 pb-0">
-        {/* ===== HERO TITLE ===== */}
-        <div className="relative overflow-hidden py-10 px-4">
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 via-slate-800/80 to-teal-900/60" />
-          {/* Circuit-like decorative lines */}
-          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-400/50 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
+      <main className="relative min-h-screen pt-24 pb-0 overflow-hidden">
+        {/* Background ảnh pin mặt trời */}
+        <motion.div
+          className="absolute inset-0 z-0"
+          initial={{ scale: 1.05 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 to-slate-900/75 z-10" />
+          <div
+            className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('https://images.unsplash.com/photo-1509391366360-2e959784a276?q=80&w=2072&auto=format&fit=crop')" }}
+          />
+        </motion.div>
 
-          <div className="relative z-10 text-center max-w-4xl mx-auto">
-            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-wide">
-              <span className="text-yellow-400 italic">TPC SOLAR</span>
-              <span className="text-white"> – NĂNG LƯỢNG XANH, GIÁ TRỊ BỀN VỮNG</span>
-            </h1>
+        {/* ===== HERO TITLE ===== */}
+        <div className="relative z-10 overflow-hidden py-14 px-4">
+          {/* Decorative lines */}
+          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-400/50 to-transparent" />
+          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
+
+          {/* Glow hào quang phía sau */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[500px] h-[120px] bg-orange-500/10 blur-3xl rounded-full" />
           </div>
+
+          <motion.div
+            className="relative z-10 text-center max-w-4xl mx-auto"
+            variants={fadeUp}
+            initial="hidden"
+            animate="visible"
+          >
+            {/* Dòng 1: TPC SOLAR */}
+            <motion.h1
+              className="font-black italic uppercase"
+              style={{
+                fontSize: "clamp(2.5rem, 8vw, 5rem)",
+                background: "linear-gradient(135deg, #facc15 0%, #fb923c 50%, #f59e0b 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                textShadow: "none",
+                letterSpacing: "0.05em",
+                lineHeight: 1.1,
+              }}
+              initial={{ opacity: 0, y: -24, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+            >
+              TPC SOLAR
+            </motion.h1>
+
+            {/* Separator */}
+            <motion.div
+              className="flex items-center justify-center gap-3 my-4"
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+            >
+              <div className="h-px w-16 bg-gradient-to-r from-transparent to-orange-400" />
+              <div className="w-2 h-2 rounded-full bg-orange-400 shadow-[0_0_8px_2px_rgba(251,146,60,0.6)]" />
+              <div className="h-px w-16 bg-gradient-to-l from-transparent to-orange-400" />
+            </motion.div>
+
+            {/* Dòng 2: Slogan */}
+            <motion.p
+              className="text-white/80 font-semibold uppercase"
+              style={{
+                fontSize: "clamp(0.75rem, 2.5vw, 1.25rem)",
+                letterSpacing: "0.25em",
+              }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: "easeOut" }}
+            >
+              NĂNG LƯỢNG XANH &nbsp;·&nbsp; GIÁ TRỊ BỀN VỮNG
+            </motion.p>
+          </motion.div>
         </div>
 
         {/* ===== 4 HIGHLIGHT BADGES ===== */}
-        <div className="bg-white/5 backdrop-blur-sm border-y border-white/10">
+        <motion.div
+          className="relative z-10 bg-white/5 backdrop-blur-sm border-y border-white/10"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <div className="max-w-5xl mx-auto px-4 py-5 grid grid-cols-2 md:grid-cols-4 gap-4">
-            {highlights.map(({ icon: Icon, title, sub, color, bg }) => (
-              <div key={title} className="flex items-center gap-3">
-                <div className={`${bg} p-2.5 rounded-full shrink-0`}>
+            {highlights.map(({ icon: Icon, title, sub, color, bg }, i) => (
+              <motion.div
+                key={title}
+                className="flex items-center gap-3"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                custom={i}
+              >
+                <motion.div
+                  className={`${bg} p-2.5 rounded-full shrink-0`}
+                  whileHover={{ scale: 1.2, rotate: 10 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
                   <Icon className={`h-5 w-5 ${color}`} />
-                </div>
+                </motion.div>
                 <div>
                   <p className="font-bold text-white text-sm uppercase">{title}</p>
                   <p className="text-gray-400 text-xs">{sub}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+        </motion.div>
 
         {/* ===== MAIN 3-COLUMN SECTION ===== */}
-        <div className="max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-6">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 py-12 grid md:grid-cols-3 gap-6">
 
           {/* --- Column 1: Về Chúng Tôi --- */}
-          <div className="bg-white/5 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6 space-y-4">
-            {/* Section header */}
+          <motion.div
+            className="bg-white/5 backdrop-blur-sm border border-blue-500/30 rounded-2xl p-6 space-y-4"
+            variants={slideLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(59,130,246,0.15)" }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
             <div className="flex items-center gap-3 pb-3 border-b border-blue-500/30">
-              <div className="bg-blue-500/20 p-2 rounded-full">
+              <motion.div
+                className="bg-blue-500/20 p-2 rounded-full"
+                animate={{ rotate: [0, 5, -5, 0] }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              >
                 <Users className="h-5 w-5 text-blue-400" />
-              </div>
+              </motion.div>
               <h2 className="text-white font-bold text-lg uppercase tracking-wide">Về Chúng Tôi</h2>
             </div>
 
@@ -156,58 +260,114 @@ export default function AboutPage() {
             </p>
 
             <div className="space-y-3 pt-2">
-              {aboutPoints.map(({ icon: Icon, text }) => (
-                <div key={text} className="flex items-start gap-3">
+              {aboutPoints.map(({ icon: Icon, text }, i) => (
+                <motion.div
+                  key={text}
+                  className="flex items-start gap-3"
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  custom={i}
+                >
                   <div className="bg-green-500/20 p-1.5 rounded-full shrink-0 mt-0.5">
                     <Icon className="h-4 w-4 text-green-400" />
                   </div>
                   <p className="text-gray-300 text-sm leading-snug">{text}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* --- Column 2: Dịch Vụ Của TPC --- */}
-          <div className="bg-white/5 backdrop-blur-sm border border-orange-500/30 rounded-2xl p-6 space-y-4">
-            {/* Section header */}
+          <motion.div
+            className="bg-white/5 backdrop-blur-sm border border-orange-500/30 rounded-2xl p-6 space-y-4"
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(249,115,22,0.15)" }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
             <div className="flex items-center gap-3 pb-3 border-b border-orange-500/30">
-              <div className="bg-orange-500/20 p-2 rounded-full">
+              <motion.div
+                className="bg-orange-500/20 p-2 rounded-full"
+                animate={{ rotate: 360 }}
+                transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+              >
                 <Settings className="h-5 w-5 text-orange-400" />
-              </div>
+              </motion.div>
               <h2 className="text-white font-bold text-lg uppercase tracking-wide">Dịch Vụ Của TPC</h2>
             </div>
 
             <ul className="space-y-4">
-              {services.map(({ icon: Icon, text }, idx) => (
-                <li key={idx} className="flex items-start gap-3">
-                  <div className="bg-orange-500/20 p-2 rounded-lg shrink-0 mt-0.5">
+              {services.map(({ icon: Icon, text }, i) => (
+                <motion.li
+                  key={i}
+                  className="flex items-start gap-3"
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  custom={i}
+                >
+                  <motion.div
+                    className="bg-orange-500/20 p-2 rounded-lg shrink-0 mt-0.5"
+                    whileHover={{ scale: 1.15, backgroundColor: "rgba(249,115,22,0.4)" }}
+                  >
                     <Icon className="h-4 w-4 text-orange-400" />
-                  </div>
+                  </motion.div>
                   <p className="text-gray-300 text-sm leading-snug">{text}</p>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* --- Column 3: Lợi Ích Khi Chọn TPC --- */}
-          <div className="bg-white/5 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 space-y-4">
-            {/* Section header */}
+          <motion.div
+            className="bg-white/5 backdrop-blur-sm border border-green-500/30 rounded-2xl p-6 space-y-4"
+            variants={slideRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            whileHover={{ y: -4, boxShadow: "0 20px 40px rgba(34,197,94,0.15)" }}
+            transition={{ type: "spring", stiffness: 200 }}
+          >
             <div className="flex items-center gap-3 pb-3 border-b border-green-500/30">
-              <div className="bg-green-500/20 p-2 rounded-full">
+              <motion.div
+                className="bg-green-500/20 p-2 rounded-full"
+                animate={{ scale: [1, 1.15, 1] }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+              >
                 <ShieldCheck className="h-5 w-5 text-green-400" />
-              </div>
+              </motion.div>
               <h2 className="text-white font-bold text-lg uppercase tracking-wide">Lợi Ích Khi Chọn TPC</h2>
             </div>
 
             <ul className="space-y-3">
-              {benefits.map((item) => (
-                <li key={item} className="flex items-center gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-green-400 shrink-0" />
+              {benefits.map((item, i) => (
+                <motion.li
+                  key={item}
+                  className="flex items-center gap-3"
+                  variants={scaleIn}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  custom={i}
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 + 0.3, type: "spring", stiffness: 300 }}
+                  >
+                    <CheckCircle2 className="h-5 w-5 text-green-400 shrink-0" />
+                  </motion.div>
                   <p className="text-gray-300 text-sm">{item}</p>
-                </li>
+                </motion.li>
               ))}
             </ul>
-          </div>
+          </motion.div>
         </div>
       </main>
     </>
