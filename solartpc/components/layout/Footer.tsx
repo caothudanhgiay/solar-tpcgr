@@ -25,7 +25,7 @@ export default function Footer() {
               </span>
             </Link>
             <div className="flex space-x-4 pt-2">
-              <a href="#" aria-label="Facebook" className="relative w-10 h-10 rounded-xl overflow-hidden hover:scale-110 transition-transform shadow-md block">
+              <a href="https://www.facebook.com/profile.php?id=61589549437212" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="relative w-10 h-10 rounded-xl overflow-hidden hover:scale-110 transition-transform shadow-md block">
                 <Image
                   src="/images/fb-icon.png"
                   alt="Facebook"
@@ -61,7 +61,7 @@ export default function Footer() {
               <ul className="space-y-3 text-sm text-gray-400">
                 <li className="flex items-start gap-3">
                   <MapPin className="h-5 w-5 text-orange-500 mt-0.5 shrink-0" />
-                  <span className="leading-relaxed">Khu phố Long đức 1, phườngTam phước, thành phố Đồng Nai</span>
+                  <span className="leading-relaxed">Khu phố Long Đức 1, Phường Tam Phước, Thành phố Đồng Nai</span>
                 </li>
                 <li className="flex items-center gap-3">
                   <Phone className="h-5 w-5 text-orange-500 shrink-0" />
