@@ -30,8 +30,8 @@ jobs:
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
             echo "NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}" >> .env
             
-            # Build và khởi chạy các container (Frontend, Backend, Database) bằng docker-compose
-            docker-compose up --build -d
+            # Build và khởi chạy các container (Frontend, Backend, Database) bằng docker compose
+            docker compose up --build -d
             
             # Dọn dẹp các images không còn sử dụng để giải phóng dung lượng (Tùy chọn)
             docker image prune -f
