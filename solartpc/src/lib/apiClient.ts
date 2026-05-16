@@ -1,4 +1,6 @@
-import { API_URL } from "@/utils/constants";
+import { API_URL } from "@/lib/utils/constants";
+import { ApiException, handleApiResponse } from "./exception/exception";
+import { AppError } from "./exception/error";
 
 const DEFAULT_BASE_URL = API_URL;
 
@@ -14,13 +16,13 @@ class ApiClient {
    */
   private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const url = `${this.baseUrl}${endpoint}`;
-    
+
     // Cấu hình headers mặc định
     const headers = new Headers(options.headers);
-    
+
     // Tự động thêm Content-Type là application/json nếu có truyền body
     if (!headers.has('Content-Type') && options.body) {
-        headers.set('Content-Type', 'application/json');
+      headers.set('Content-Type', 'application/json');
     }
 
     // Tương lai: bạn có thể cấu hình lấy token từ localStorage và gắn vào header ở đây
@@ -34,35 +36,22 @@ class ApiClient {
 
     try {
       const response = await fetch(url, config);
-      
-      // Bắt lỗi HTTP (4xx, 5xx)
-      if (!response.ok) {
-        let errorMessage = `Lỗi hệ thống: HTTP ${response.status}`;
-        try {
-          // Thử parse thông báo lỗi từ server gửi về (nếu có)
-          const errorData = await response.json();
-          errorMessage = errorData.message || errorMessage;
-        } catch (e) {
-          // Không parse được JSON, giữ nguyên errorMessage
-        }
-        throw new Error(errorMessage);
+
+      // Chuyển giao việc xử lý response cho hàm chuẩn hóa handleApiResponse
+      const result = await handleApiResponse(response);
+
+      // Nếu không có lỗi (status thuộc nhóm 200-204), trả về data
+      return result.data as T;
+
+    } catch (error: any) {
+      console.warn(`[API Call Failed] ${options.method || 'GET'} ${url}:`, error.message);
+
+      if (error instanceof ApiException) {
+        ApiException.handle(error);
+      } else {
+        AppError.handle(error);
       }
 
-      // Trả về rỗng nếu status là 204 (No Content)
-      if (response.status === 204) {
-        return {} as T;
-      }
-      
-      const responseText = await response.text();
-      try {
-        return JSON.parse(responseText);
-      } catch (parseError) {
-        console.error(`[API Parse Error] URL: ${url}, Text length: ${responseText.length}`);
-        console.error(`[API Parse Error] Raw text (first 1000 chars):`, responseText.substring(0, 1000));
-        throw parseError;
-      }
-    } catch (error) {
-      console.error(`[API Call Failed] ${options.method || 'GET'} ${url}:`, error);
       throw error;
     }
   }

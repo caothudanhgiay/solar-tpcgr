@@ -1,5 +1,6 @@
 package com.example.solar_tpc_server.controller;
 
+import com.example.solar_tpc_server.response.ApiResponse;
 import com.example.solar_tpc_server.dto.TsoMenuDto;
 import com.example.solar_tpc_server.service.TsoMenuService;
 import lombok.RequiredArgsConstructor;
@@ -18,8 +19,8 @@ public class TsoMenuController {
     private final TsoMenuService tsoMenuService;
 
     @GetMapping
-    public ResponseEntity<List<TsoMenuDto>> getEnabledMenus() {
+    public ResponseEntity<ApiResponse<List<TsoMenuDto>>> getEnabledMenus() {
         List<TsoMenuDto> menus = tsoMenuService.getAllEnabledMenus();
-        return ResponseEntity.ok(menus);
+        return ResponseEntity.ok(ApiResponse.success(menus, "Lấy danh sách menu thành công"));
     }
 }

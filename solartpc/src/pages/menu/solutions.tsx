@@ -232,7 +232,7 @@ export default function SolutionsPage() {
               Đội ngũ kỹ thuật của chúng tôi sẵn sàng hỗ trợ bạn 24/7.
             </motion.p>
             <motion.a
-              href="/contact"
+              href="/menu/contact"
               className="inline-block bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-10 rounded-full uppercase tracking-wider shadow-lg shadow-orange-500/30 transition-colors"
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.97 }}

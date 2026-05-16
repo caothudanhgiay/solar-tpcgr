@@ -6,24 +6,45 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
+import { apiClient } from "@/lib/apiClient";
+import { API_MENUS } from "@/lib/utils/constants";
 
 // Giữ lại menu mặc định làm fallback khi API lỗi hoặc đang load
 const initialNavigation = [
   { name: "Trang Chủ", href: "/" },
-  { name: "Giới Thiệu", href: "/about" },
-  { name: "Giải Pháp", href: "/solutions" },
-  { name: "Dự Án", href: "/projects" },
-  { name: "Tin Tức", href: "/news" },
-  { name: "Liên Hệ", href: "/contact" },
+  { name: "Giới Thiệu", href: "/menu/about" },
+  { name: "Giải Pháp", href: "/menu/solutions" },
+  { name: "Dự Án", href: "/menu/projects" },
+  { name: "Tin Tức", href: "/menu/news" },
+  { name: "Liên Hệ", href: "/menu/contact" },
 ];
 
 export default function Header({ initialMenus }: { initialMenus?: { name: string; href: string; }[] }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const navigation = initialMenus && initialMenus.length > 0 ? initialMenus : initialNavigation;
+  const [navigation, setNavigation] = useState(initialMenus && initialMenus.length > 0 ? initialMenus : initialNavigation);
+
+  useEffect(() => {
+    const fetchMenus = async () => {
+      if (initialMenus && initialMenus.length > 0) return;
+      try {
+        const data: any[] = await apiClient.get(API_MENUS);
+        if (data && data.length > 0) {
+          const fetchedMenus = data.map((item: any) => ({
+            name: item.menuName,
+            href: item.menuUrl,
+          }));
+          setNavigation(fetchedMenus);
+        }
+      } catch (error: any) {
+        console.warn("Failed to fetch menus from API in Header:", error.message);
+      }
+    };
+    fetchMenus();
+  }, [initialMenus]);
 
   const handleQuoteClick = (e: React.MouseEvent) => {
-    if (window.location.pathname === "/contact") {
+    if (window.location.pathname === "/menu/contact") {
       e.preventDefault();
       const input = document.getElementById("ho-va-ten") as HTMLInputElement | null;
       if (input) {
@@ -84,7 +105,7 @@ export default function Header({ initialMenus }: { initialMenus?: { name: string
         {/* Action Button */}
         <div className="hidden lg:flex items-center gap-4">
           <Link
-            href="/contact#ho-va-ten"
+            href="/menu/contact#ho-va-ten"
             onClick={handleQuoteClick}
             className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2.5 rounded-full text-sm font-bold transition-all shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:-translate-y-0.5"
           >
@@ -122,7 +143,7 @@ export default function Header({ initialMenus }: { initialMenus?: { name: string
             ))}
             <div className="pt-4 pb-2 px-2">
               <Link
-                href="/contact#ho-va-ten"
+                href="/menu/contact#ho-va-ten"
                 onClick={(e) => { handleQuoteClick(e); setMobileMenuOpen(false); }}
                 className="block w-full text-center bg-orange-500 hover:bg-orange-600 text-white px-5 py-3.5 rounded-xl text-base font-bold transition-colors shadow-lg shadow-orange-500/30"
               >

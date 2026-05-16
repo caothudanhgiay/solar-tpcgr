@@ -49,14 +49,14 @@ export default function HeroSection() {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Link
-                href="/contact"
+                href="/menu/contact"
                 className="inline-flex items-center justify-center gap-2 bg-orange-500 hover:bg-orange-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all hover:shadow-lg hover:shadow-orange-500/30 hover:-translate-y-1"
               >
                 Nhận tư vấn ngay
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <Link
-                href="/projects"
+                href="/menu/projects"
                 className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/20 px-8 py-4 rounded-full font-bold text-lg transition-all hover:-translate-y-1"
               >
                 Xem dự án
