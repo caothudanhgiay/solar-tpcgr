@@ -94,10 +94,10 @@ export default function Footer() {
                 'Tuyển dụng'
               ].map((item) => (
                 <li key={item}>
-                  <Link href="#" className="flex items-center text-sm text-gray-400 hover:text-orange-500 transition-colors">
+                  <a href="#" className="flex items-center text-sm text-gray-400 hover:text-orange-500 transition-colors">
                     <ChevronRight className="h-4 w-4 mr-2 text-orange-500" />
                     {item}
-                  </Link>
+                  </a>
                 </li>
               ))}
             </ul>

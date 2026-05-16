@@ -2,10 +2,8 @@ import { Html, Head, Main, NextScript } from 'next/document'
 
 export default function Document() {
   return (
-    <Html lang="vi" className="scroll-smooth">
-      <Head>
-        <link rel="icon" href="/icon.png" />
-      </Head>
+    <Html lang="vi" className="scroll-smooth" data-scroll-behavior="smooth">
+      <Head />
       <body className="antialiased">
         <Main />
         <NextScript />
