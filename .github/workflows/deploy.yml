@@ -19,23 +19,21 @@ jobs:
             echo "Đang triển khai phiên bản mới..."
             
             # Di chuyển tới thư mục chứa code trên server (Bạn cần thay đổi đường dẫn này cho đúng)
-            # Ví dụ: cd /var/www/solar-tpcgr
             cd /root/solar-tpcgr
             
             # Kéo code mới nhất từ Github về Server
             git pull origin main
             
-            # Di chuyển vào thư mục ứng dụng Next.js
-            cd solartpc
+            # Tạo file .env chứa cấu hình từ GitHub Secrets và Variables
+            echo "DB_NAME=${{ secrets.DB_NAME }}" > .env
+            echo "DB_USERNAME=${{ secrets.DB_USERNAME }}" >> .env
+            echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
+            echo "NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}" >> .env
             
-            # Build hình ảnh Docker mới
-            docker build -t solartpc-web:latest .
+            # Build và khởi chạy các container (Frontend, Backend, Database) bằng docker-compose
+            docker-compose up --build -d
             
-            # Xoá bỏ container cũ đang chạy
-            docker stop solartpc-container || true
-            docker rm solartpc-container || true
-            
-            # Khởi chạy container mới với code mới nhất (chỉ listen ở localhost để bảo mật)
-            docker run -d -p 127.0.0.1:3000:3000 --name solartpc-container --restart unless-stopped solartpc-web:latest
+            # Dọn dẹp các images không còn sử dụng để giải phóng dung lượng (Tùy chọn)
+            docker image prune -f
             
             echo "Triển khai thành công rực rỡ! 🚀"

@@ -1,0 +1,36 @@
+package com.example.solar_tpc_server.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Table(name = "tso_menu")
+@Data
+@EqualsAndHashCode(callSuper = true)
+@NoArgsConstructor
+@AllArgsConstructor
+public class TsoMenu extends MetaData {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "menu_id")
+    private Long menuId;
+
+    @Column(name = "menu_name", nullable = false)
+    private String menuName;
+
+    @Column(name = "menu_name_eng")
+    private String menuNameEng;
+
+    @Column(name = "menu_url", nullable = false)
+    private String menuUrl;
+
+    @Column(name = "is_enabled", nullable = false)
+    private Boolean isEnabled;
+
+    @Column(name = "note")
+    private String note;
+}

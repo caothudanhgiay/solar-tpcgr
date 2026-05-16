@@ -18,6 +18,7 @@ export default function Footer() {
                   fill
                   sizes="(max-width: 768px) 192px, (max-width: 1024px) 256px, 288px"
                   className="object-contain p-1 object-left"
+                  priority
                 />
               </div>
               <span className="text-white font-bold text-lg mt-4 uppercase tracking-wide">

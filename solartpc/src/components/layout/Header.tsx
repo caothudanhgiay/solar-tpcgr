@@ -6,7 +6,9 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { Menu, X } from "lucide-react";
 
-const navigation = [
+
+// Giữ lại menu mặc định làm fallback khi API lỗi hoặc đang load
+const initialNavigation = [
   { name: "Trang Chủ", href: "/" },
   { name: "Giới Thiệu", href: "/about" },
   { name: "Giải Pháp", href: "/solutions" },
@@ -15,9 +17,10 @@ const navigation = [
   { name: "Liên Hệ", href: "/contact" },
 ];
 
-export default function Header() {
+export default function Header({ initialMenus }: { initialMenus?: { name: string; href: string; }[] }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigation = initialMenus && initialMenus.length > 0 ? initialMenus : initialNavigation;
 
   const handleQuoteClick = (e: React.MouseEvent) => {
     if (window.location.pathname === "/contact") {
@@ -53,13 +56,14 @@ export default function Header() {
         {/* Logo */}
         <Link href="/" className="flex items-center group shrink-0">
           <div className="relative w-56 md:w-64 lg:w-72 h-16 md:h-20 transition-transform group-hover:scale-105">
-            <Image 
-              src="/images/logo_tpc.png" 
-              alt="TPC Logo" 
+            <Image
+              src="/images/logo_tpc.png"
+              alt="TPC Logo"
               fill
               sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
               className="object-contain object-left"
               priority
+              loading="eager"
             />
           </div>
         </Link>
