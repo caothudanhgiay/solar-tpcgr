@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 @MappedSuperclass
 @Data
-public class MetaData {
+public class TsoMetaData {
 
     @Column(name = "created_at", nullable = false)
     private String createdAt;
@@ -19,3 +19,4 @@ public class MetaData {
     @Column(name = "updated_date")
     private LocalDateTime updatedDate;
 }
+

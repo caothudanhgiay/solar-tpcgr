@@ -6,7 +6,7 @@ import lombok.Getter;
  * Enum định nghĩa toàn bộ mã lỗi (Error Code) trong hệ thống
  */
 @Getter
-public enum ErrorCode {
+public enum TsoErrorCode {
 
     // Nhóm 4xx - Lỗi từ phía Client
     BAD_REQUEST(400, "Dữ liệu yêu cầu không hợp lệ (Bad Request)"),
@@ -23,8 +23,9 @@ public enum ErrorCode {
     private final int code;
     private final String message;
 
-    ErrorCode(int code, String message) {
+    TsoErrorCode(int code, String message) {
         this.code = code;
         this.message = message;
     }
 }
+

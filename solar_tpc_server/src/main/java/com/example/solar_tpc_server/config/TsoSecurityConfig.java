@@ -11,7 +11,7 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import com.example.solar_tpc_server.util.ApiConstant;
+import com.example.solar_tpc_server.util.TsoApiConstant;
 import com.example.solar_tpc_server.util.PropertyUtils;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ import org.springframework.context.annotation.DependsOn;
 @Configuration
 @EnableWebSecurity
 @DependsOn("propertyUtils")
-public class SecurityConfig {
+public class TsoSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -41,10 +41,10 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         ArrayList<String> methods = new ArrayList<String>() {{    
-            add(ApiConstant.GET);
-            add(ApiConstant.POST);
-            add(ApiConstant.PUT);
-            add(ApiConstant.DELETE);
+            add(TsoApiConstant.GET);
+            add(TsoApiConstant.POST);
+            add(TsoApiConstant.PUT);
+            add(TsoApiConstant.DELETE);
         }};   
         
         // Sử dụng PropertyUtils để lấy cấu hình
@@ -59,3 +59,4 @@ public class SecurityConfig {
         return source;
     }
 }
+

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class ApiResponse<T> {
+public class TsoApiResponse<T> {
     
     private int statusCode;
     private String message;
@@ -20,8 +20,8 @@ public class ApiResponse<T> {
      * @param data Dữ liệu trả về
      * @param message Thông báo (ví dụ: "Lấy dữ liệu thành công")
      */
-    public static <T> ApiResponse<T> success(T data, String message) {
-        return ApiResponse.<T>builder()
+    public static <T> TsoApiResponse<T> success(T data, String message) {
+        return TsoApiResponse.<T>builder()
                 .statusCode(200)
                 .message(message)
                 .data(data)
@@ -32,7 +32,7 @@ public class ApiResponse<T> {
      * Tạo một response thành công với thông báo mặc định là "Success".
      * @param data Dữ liệu trả về
      */
-    public static <T> ApiResponse<T> success(T data) {
+    public static <T> TsoApiResponse<T> success(T data) {
         return success(data, "Success");
     }
 
@@ -41,11 +41,12 @@ public class ApiResponse<T> {
      * @param statusCode Mã lỗi HTTP hoặc lỗi nghiệp vụ (ví dụ: 400, 404, 500)
      * @param message Thông báo lỗi
      */
-    public static <T> ApiResponse<T> error(int statusCode, String message) {
-        return ApiResponse.<T>builder()
+    public static <T> TsoApiResponse<T> error(int statusCode, String message) {
+        return TsoApiResponse.<T>builder()
                 .statusCode(statusCode)
                 .message(message)
                 .data(null)
                 .build();
     }
 }
+

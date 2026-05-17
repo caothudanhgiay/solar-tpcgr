@@ -2,9 +2,9 @@ package com.example.solar_tpc_server.util;
 
 import java.util.ArrayList;
 
-public final class ApiConstant {
+public final class TsoApiConstant {
 
-    private ApiConstant() {
+    private TsoApiConstant() {
         throw new UnsupportedOperationException("This is a utility class and cannot be instantiated");
     }
 
@@ -25,3 +25,4 @@ public final class ApiConstant {
 
     // Bạn có thể thêm các endpoint và tên method khác ở đây
 }
+

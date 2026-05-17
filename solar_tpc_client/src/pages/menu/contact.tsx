@@ -167,7 +167,7 @@ export default function ContactPage() {
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <textarea
-                  placeholder="Nội dung"
+                  placeholder="Nội dung (*)"
                   rows={4}
                   className="w-full pl-8 pr-4 py-3 bg-transparent border-0 border-b border-gray-600 outline-none focus:border-orange-500 focus:ring-0 text-white placeholder-gray-500 transition-colors resize-none"
                 ></textarea>

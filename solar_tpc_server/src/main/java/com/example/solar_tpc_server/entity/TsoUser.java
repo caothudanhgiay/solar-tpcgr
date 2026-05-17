@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class TsoUser extends MetaData {
+public class TsoUser extends TsoMetaData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,3 +34,4 @@ public class TsoUser extends MetaData {
     @Column(name = "role_id", nullable = false)
     private Long roleId;
 }
+

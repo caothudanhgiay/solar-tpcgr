@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class TsoCustomerRequest extends MetaData {
+public class TsoCustomerRequest extends TsoMetaData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,3 +34,4 @@ public class TsoCustomerRequest extends MetaData {
     @Column(name = "request_content", nullable = false, columnDefinition = "TEXT")
     private String requestContent;
 }
+

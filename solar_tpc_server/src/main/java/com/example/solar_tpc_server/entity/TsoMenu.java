@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class TsoMenu extends MetaData {
+public class TsoMenu extends TsoMetaData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,3 +34,4 @@ public class TsoMenu extends MetaData {
     @Column(name = "note")
     private String note;
 }
+

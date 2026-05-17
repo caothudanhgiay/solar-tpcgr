@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class TsoGrpRole extends MetaData {
+public class TsoGrpRole extends TsoMetaData {
 
     @EmbeddedId
     private TsoGrpRoleId id;
@@ -23,3 +23,4 @@ public class TsoGrpRole extends MetaData {
     @Column(name = "note")
     private String note;
 }
+

@@ -8,7 +8,7 @@ echo [1/2] Dang khoi dong Spring Boot Backend...
 start "Spring Boot Server" cmd /k "cd solar_tpc_server && gradlew bootRun"
 
 echo [2/2] Dang khoi dong Next.js Frontend...
-start "Next.js Frontend" cmd /k "cd solartpc && npm run dev"
+start "Next.js Frontend" cmd /k "cd solar_tpc_client && npm run dev"
 
 echo.
 echo Da phat lenh khoi dong ca 2 project trong cac cua so rieng biet!

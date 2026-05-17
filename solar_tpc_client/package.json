@@ -1,5 +1,5 @@
 {
-  "name": "solartpc",
+  "name": "solar_tpc_client",
   "version": "0.1.0",
   "private": true,
   "scripts": {

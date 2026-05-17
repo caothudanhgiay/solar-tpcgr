@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class TsoAccess extends MetaData {
+public class TsoAccess extends TsoMetaData {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,3 +28,4 @@ public class TsoAccess extends MetaData {
     @Column(name = "note")
     private String note;
 }
+

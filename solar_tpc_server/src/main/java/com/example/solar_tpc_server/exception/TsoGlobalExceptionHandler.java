@@ -1,6 +1,6 @@
 package com.example.solar_tpc_server.exception;
 
-import com.example.solar_tpc_server.response.ApiResponse;
+import com.example.solar_tpc_server.response.TsoApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -9,21 +9,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * Nơi tập trung bắt và xử lý mọi Exception văng ra từ Controllers
  */
 @RestControllerAdvice
-public class GlobalExceptionHandler {
+public class TsoGlobalExceptionHandler {
 
     /**
-     * Bắt lỗi nghiệp vụ chủ động văng ra (AppException)
+     * Bắt lỗi nghiệp vụ chủ động văng ra (TsoAppException)
      */
-    @ExceptionHandler(value = AppException.class)
-    public ResponseEntity<ApiResponse<Object>> handlingAppException(AppException exception) {
-        ErrorCode errorCode = exception.getErrorCode();
+    @ExceptionHandler(value = TsoAppException.class)
+    public ResponseEntity<TsoApiResponse<Object>> handlingAppException(TsoAppException exception) {
+        TsoErrorCode errorCode = exception.getErrorCode();
         
-        // Trả về ApiResponse bọc kèm theo message lấy từ enum ErrorCode
+        // Trả về TsoApiResponse bọc kèm theo message lấy từ enum TsoErrorCode
         String message = exception.getMessage() != null && !exception.getMessage().equals(errorCode.getMessage()) 
                             ? exception.getMessage() 
                             : errorCode.getMessage();
                             
-        ApiResponse<Object> apiResponse = ApiResponse.error(errorCode.getCode(), message);
+        TsoApiResponse<Object> apiResponse = TsoApiResponse.error(errorCode.getCode(), message);
 
         return ResponseEntity
                 .status(errorCode.getCode())
@@ -34,10 +34,10 @@ public class GlobalExceptionHandler {
      * Bắt các lỗi chung (ví dụ lỗi RuntimeException không lường trước được)
      */
     @ExceptionHandler(value = Exception.class)
-    public ResponseEntity<ApiResponse<Object>> handlingRuntimeException(Exception exception) {
-        ErrorCode errorCode = ErrorCode.INTERNAL_SERVER_ERROR;
+    public ResponseEntity<TsoApiResponse<Object>> handlingRuntimeException(Exception exception) {
+        TsoErrorCode errorCode = TsoErrorCode.INTERNAL_SERVER_ERROR;
         
-        ApiResponse<Object> apiResponse = ApiResponse.error(
+        TsoApiResponse<Object> apiResponse = TsoApiResponse.error(
                 errorCode.getCode(), 
                 errorCode.getMessage() + ": " + exception.getMessage()
         );
@@ -47,3 +47,4 @@ public class GlobalExceptionHandler {
                 .body(apiResponse);
     }
 }
+

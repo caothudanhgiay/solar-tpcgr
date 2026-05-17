@@ -6,18 +6,19 @@ import lombok.Getter;
  * Custom Exception class dùng để quăng lỗi mọi nơi trong project
  */
 @Getter
-public class AppException extends RuntimeException {
+public class TsoAppException extends RuntimeException {
 
-    private final ErrorCode errorCode;
+    private final TsoErrorCode errorCode;
 
-    public AppException(ErrorCode errorCode) {
+    public TsoAppException(TsoErrorCode errorCode) {
         super(errorCode.getMessage());
         this.errorCode = errorCode;
     }
     
     // Hỗ trợ truyền thêm thông báo chi tiết nếu cần thiết
-    public AppException(ErrorCode errorCode, String detailedMessage) {
+    public TsoAppException(TsoErrorCode errorCode, String detailedMessage) {
         super(detailedMessage);
         this.errorCode = errorCode;
     }
 }
+
