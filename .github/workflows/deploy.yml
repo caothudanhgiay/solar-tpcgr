@@ -21,8 +21,9 @@ jobs:
             # Di chuyển tới thư mục chứa code trên server (Bạn cần thay đổi đường dẫn này cho đúng)
             cd /root/solar-tpcgr
             
-            # Kéo code mới nhất từ Github về Server
+            # Kéo code mới nhất từ Github về Server và cập nhật các submodules
             git pull origin main
+            git submodule update --init --recursive
             
             # Tạo file .env chứa cấu hình từ GitHub Secrets và Variables
             echo "DB_NAME=${{ secrets.DB_NAME }}" > .env
