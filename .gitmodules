@@ -1,0 +1,9 @@
+[submodule "solar_tpc_admin"]
+	path = solar_tpc_admin
+	url = https://github.com/caothudanhgiay/solar_tpc_admin.git
+[submodule "solar_tpc_server"]
+	path = solar_tpc_server
+	url = https://github.com/caothudanhgiay/solar_tpc_server.git
+[submodule "solar_tpc_client"]
+	path = solar_tpc_client
+	url = https://github.com/caothudanhgiay/solar_tpc_client.git
