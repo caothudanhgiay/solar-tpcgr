@@ -14,4 +14,3 @@ echo.
 echo Da phat lenh khoi dong ca 2 project trong cac cua so rieng biet!
 echo Ban co the tat cua so hien tai nay di.
 echo.
-pause
