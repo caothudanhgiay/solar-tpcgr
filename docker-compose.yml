@@ -24,16 +24,17 @@ services:
     restart: always
     environment:
       - SPRING_PROFILES_ACTIVE=prod
-      - DB_HOST=db
+      - DB_HOST=${DB_HOST:-160.250.26.51}
       - DB_PORT=3306
       - DB_NAME=${DB_NAME:-solar_tpc}
       - DB_USERNAME=${DB_USERNAME:-root}
       - DB_PASSWORD=${DB_PASSWORD:-your_prod_password}
     ports:
       - "8080:8080"
-    depends_on:
-      db:
-        condition: service_healthy
+    # Comment lại depends_on nếu bạn hoàn toàn không dùng container 'db' nội bộ nữa
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
 
   frontend:
     build:
