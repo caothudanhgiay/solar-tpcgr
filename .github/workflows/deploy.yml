@@ -31,8 +31,18 @@ jobs:
             echo "DB_PASSWORD=${{ secrets.DB_PASSWORD }}" >> .env
             echo "NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}" >> .env
             
-            # Build và khởi chạy các container (Frontend, Backend, Database) bằng docker compose
-            docker compose up --build -d
+            # Build từng service tuần tự để tránh quá tải RAM trên VPS (Sequential Build)
+            echo "Đang build cơ sở dữ liệu..."
+            docker compose build db
+            
+            echo "Đang build backend Java..."
+            docker compose build backend
+            
+            echo "Đang build frontend Next.js..."
+            docker compose build frontend
+            
+            echo "Khởi chạy tất cả các container..."
+            docker compose up -d
             
             # Dọn dẹp các images không còn sử dụng để giải phóng dung lượng (Tùy chọn)
             docker image prune -f
