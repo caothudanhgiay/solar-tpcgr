@@ -1,0 +1,7 @@
+# Spring Boot Actuator/Diagnostic files
+beans.json
+beans2.json
+conditions.json
+
+# Bỏ qua luôn thư mục cấu hình cá nhân của VS Code
+.vscode/
