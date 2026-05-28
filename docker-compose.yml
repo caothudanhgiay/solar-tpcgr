@@ -11,7 +11,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 5s
       timeout: 5s
       retries: 10
@@ -29,6 +29,7 @@ services:
       - DB_NAME=${DB_NAME:-solar_tpc}
       - DB_USERNAME=${DB_USERNAME:-root}
       - DB_PASSWORD=${DB_PASSWORD:-your_prod_password}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:}
     ports:
       - "8080:8080"
     # Comment lại depends_on nếu bạn hoàn toàn không dùng container 'db' nội bộ nữa
