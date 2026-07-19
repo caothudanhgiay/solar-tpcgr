@@ -43,8 +43,25 @@ jobs:
             echo "Đang build frontend Next.js..."
             docker compose build frontend
             
+            echo "Đang build admin Vue..."
+            docker compose build admin
+            
+            # Sau khi build xong, extract dist files từ image ra host filesystem
+            # Nginx của host sẽ serve trực tiếp từ /var/www/tpcsolar/admin/
+            echo "Đang cập nhật static files cho Admin..."
+            mkdir -p /var/www/tpcsolar/admin
+            # Tạo container tạm để copy files (không cần chạy)
+            docker create --name temp_admin_extract solar-tpcgr-admin:latest
+            # Copy toàn bộ dist từ container ra host
+            docker cp temp_admin_extract:/usr/share/nginx/html/. /var/www/tpcsolar/admin/
+            # Xóa container tạm
+            docker rm temp_admin_extract
+            echo "Cập nhật static files Admin hoàn tất!"
+            
             echo "Khởi chạy tất cả các container..."
-            docker compose up -d
+            # Dùng --force-recreate để đảm bảo backend và frontend luôn
+            # khởi động lại với image mới nhất sau khi build
+            docker compose up -d --force-recreate --remove-orphans
             
             # Dọn dẹp các images không còn sử dụng để giải phóng dung lượng (Tùy chọn)
             docker image prune -f
