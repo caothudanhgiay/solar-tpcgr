@@ -30,7 +30,7 @@ services:
       - DB_USERNAME=${DB_USERNAME:-root}
       - DB_PASSWORD=${DB_PASSWORD:-your_prod_password}
       - UPLOAD_PRODUCT_DIR=${UPLOAD_PRODUCT_DIR:-/app/images/products}
-      # - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
     ports:
       - "8080:8080"
     volumes:
