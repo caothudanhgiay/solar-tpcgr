@@ -29,16 +29,16 @@ services:
       - DB_NAME=${DB_NAME:-solar_tpc}
       - DB_USERNAME=${DB_USERNAME:-root}
       - DB_PASSWORD=${DB_PASSWORD:-your_prod_password}
-      - UPLOAD_PRODUCT_DIR=${UPLOAD_PRODUCT_DIR:-/app/images/products}
+      - UPLOAD_PRODUCT_DIR=${UPLOAD_PRODUCT_DIR:-/app/upload/images/products}
       - GEMINI_API_KEY=${GEMINI_API_KEY}
     ports:
       - "8080:8080"
     volumes:
-      - ./images/products:/app/images/products
-    # Comment lại depends_on nếu bạn hoàn toàn không dùng container 'db' nội bộ nữa
-    # depends_on:
-    #   db:
-    #     condition: service_healthy
+      - ./upload/images/products:/app/upload/images/products
+      # Comment lại depends_on nếu bạn hoàn toàn không dùng container 'db' nội bộ nữa
+      # depends_on:
+      #   db:
+      #     condition: service_healthy
 
   frontend:
     build:
