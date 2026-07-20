@@ -34,11 +34,14 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./upload/images/products:/app/upload/images/products
-      # Comment lại depends_on nếu bạn hoàn toàn không dùng container 'db' nội bộ nữa
-      # depends_on:
-      #   db:
-      #     condition: service_healthy
+      # Bind mount: ánh xạ thư mục upload trên host vào container với CÙNG đường dẫn.
+      # Lý do: UPLOAD_PRODUCT_DIR=/root/solar-tpcgr là đường dẫn Spring Boot dùng để ghi file.
+      # Nginx trên host serve location /uploads/ -> alias /root/solar-tpcgr/
+      # Hai bên phải trỏ cùng 1 thư mục vật lý trên host.
+      - ${UPLOAD_PRODUCT_DIR:-/root/solar-tpcgr}:${UPLOAD_PRODUCT_DIR:-/root/solar-tpcgr}
+    depends_on:
+      db:
+        condition: service_healthy
 
   frontend:
     build:
