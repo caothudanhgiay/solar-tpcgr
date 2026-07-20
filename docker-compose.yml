@@ -29,12 +29,12 @@ services:
       - DB_NAME=${DB_NAME:-solar_tpc}
       - DB_USERNAME=${DB_USERNAME:-root}
       - DB_PASSWORD=${DB_PASSWORD:-your_prod_password}
-      - UPLOAD_PROJECT_DIR=${UPLOAD_PROJECT_DIR:-/root/solar-tpcgr}
+      - UPLOAD_PROJECT_DIR=${UPLOAD_PROJECT_DIR:-/var/www/solar-tpcgr}
       - GEMINI_API_KEY=${GEMINI_API_KEY}
     ports:
       - "8080:8080"
     volumes:
-      - ${UPLOAD_PROJECT_DIR:-/root/solar-tpcgr}:${UPLOAD_PROJECT_DIR:-/root/solar-tpcgr}
+      - ${UPLOAD_PROJECT_DIR:-/var/www/solar-tpcgr}:${UPLOAD_PROJECT_DIR:-/var/www/solar-tpcgr}
     depends_on:
       db:
         condition: service_healthy
