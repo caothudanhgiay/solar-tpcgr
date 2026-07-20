@@ -29,7 +29,7 @@ services:
       - DB_NAME=${DB_NAME:-solar_tpc}
       - DB_USERNAME=${DB_USERNAME:-root}
       - DB_PASSWORD=${DB_PASSWORD:-your_prod_password}
-      - UPLOAD_PROJECT_DIR=${UPLOAD_PROJECT_DIR:-/app/upload/images/projects}
+      - UPLOAD_PROJECT_DIR=${UPLOAD_PROJECT_DIR:-/root/solar-tpcgr}
       - GEMINI_API_KEY=${GEMINI_API_KEY}
     ports:
       - "8080:8080"
