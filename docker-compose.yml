@@ -34,10 +34,9 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      # Bind mount: ánh xạ thư mục upload trên host vào container với CÙNG đường dẫn.
-      # Lý do: UPLOAD_PRODUCT_DIR=/root/solar-tpcgr là đường dẫn Spring Boot dùng để ghi file.
-      # Nginx trên host serve location /uploads/ -> alias /root/solar-tpcgr/
-      # Hai bên phải trỏ cùng 1 thư mục vật lý trên host.
+      # Bind mount: ánh xạ thư mục upload trên host vào trong container
+      # Host path = UPLOAD_PRODUCT_DIR (ví dụ: /root/solar-tpcgr)
+      # Container path phải trùng với giá trị UPLOAD_PRODUCT_DIR env var
       - ${UPLOAD_PRODUCT_DIR:-/root/solar-tpcgr}:${UPLOAD_PRODUCT_DIR:-/root/solar-tpcgr}
     depends_on:
       db:
