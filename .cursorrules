@@ -1,0 +1,33 @@
+# Cursor Rules for Solar TPC Group
+
+Bạn là một AI assistant hỗ trợ phát triển hệ thống Solar TPC Group.
+
+## QUAN TRỌNG - Đọc rules trước khi code
+
+Trước khi tạo hoặc sửa code, hãy đọc file `AGENTS.md` tương ứng:
+- Root: `./AGENTS.md` — Tổng quan dự án + naming conventions chung
+- Server: `./solar_tpc_server/AGENTS.md` — Spring Boot rules + patterns
+- Client: `./solar_tpc_client/AGENTS.md` — Next.js rules + patterns
+- Admin: `./solar_tpc_admin/AGENTS.md` — Vue 3 rules + patterns
+
+## Quick Reference
+
+### Naming
+- Tất cả class/component/file đều prefix `Tso` (TPC Solar)
+- Java: PascalCase → `TsoUserService`, `TsoMenuDto`
+- Vue: PascalCase → `TsoLogin.vue`, `TsoDashboard.vue`
+- React: PascalCase → `TsoHeroSection.tsx`
+- Database: snake_case với prefix `tso_` → `tso_user`
+
+### Tech Stack
+- Server: Spring Boot 4.0, Java 21, Gradle, MySQL, JPA, Lombok
+- Client: Next.js 16, React 19, TypeScript, Tailwind CSS 4, i18next
+- Admin: Vue 3.5, Vite 8, TypeScript, Axios, vue-i18n
+
+### Key Patterns
+- Server API response: luôn dùng `TsoApiResponse<T>` wrapper
+- Server DI: `@RequiredArgsConstructor` (constructor injection)
+- Client styling: Tailwind CSS (KHÔNG viết CSS thủ công)
+- Admin styling: Vanilla CSS + CSS variables (KHÔNG dùng Tailwind)
+- Admin API: dùng `apiGet/apiPost/apiPut/apiDelete` wrappers
+- i18n: KHÔNG hardcode text — luôn dùng `t('key')` / `$t('key')`
