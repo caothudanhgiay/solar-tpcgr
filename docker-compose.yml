@@ -38,6 +38,12 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "curl", "-f", "http://localhost:8080/actuator/health" ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
 
   frontend:
     build:
@@ -49,10 +55,15 @@ services:
     restart: always
     environment:
       - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8080}
+      # Gọi backend qua network nội bộ Docker (nhanh + ổn định hơn hẳn vòng qua domain công khai/Cloudflare)
+      # khi code chạy server-side (SSR/SSG/ISR). Chỉ có hiệu lực lúc runtime, không set ở build-arg vì lúc
+      # `docker compose build frontend` chạy `npm run build`, container backend chưa tồn tại trong network.
+      - INTERNAL_API_URL=http://backend:8080
     ports:
       - "3000:3000"
     depends_on:
-      - backend
+      backend:
+        condition: service_healthy
 
   admin:
     build:
