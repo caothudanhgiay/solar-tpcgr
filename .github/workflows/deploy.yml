@@ -33,6 +33,8 @@ jobs:
             echo "UPLOAD_PROJECT_DIR=${{ secrets.UPLOAD_PROJECT_DIR }}" >> .env
             echo "NEXT_PUBLIC_API_URL=${{ vars.NEXT_PUBLIC_API_URL }}" >> .env
             echo "GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}" >> .env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+            echo "JWT_EXPIRATION_MS=${{ secrets.JWT_EXPIRATION_MS }}" >> .env
             
             # Build từng service tuần tự để tránh quá tải RAM trên VPS (Sequential Build)
             echo "Đang build cơ sở dữ liệu..."
