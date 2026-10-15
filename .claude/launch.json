@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "solar_tpc_client", "run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "solar-admin-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "solar_tpc_admin", "run", "dev"],
+      "port": 5173
     }
   ]
 }
